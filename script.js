@@ -1,5 +1,7 @@
-let input = document.getElementById('randomnumber');
+let input= document.getElementById('randomnumber');
+
 const display = document.getElementById('display');
+
 
 input.addEventListener("input", function () {
   getData();
@@ -8,23 +10,21 @@ input.addEventListener("input", function () {
 function getData() {
   let number = input.value;
   const ajax = new XMLHttpRequest();
-  if (number !== '') {
-    ajax.open("GET", 'http://numbersapi.com/', true);
-    
-    // Error handling
-    ajax.onerror = function() {
-      display.textContent = "There was an error!!!";
-    };
-    
-    ajax.onload = function () {
-      if (this.status === 200 && this.readyState == 4) {
-        let data = this.responseText;
-        display.textContent = `${data}`;
-      } else {
-        // Trigger onerror if the response status is not 200
-        ajax.onerror();
-      }
-    };
-    ajax.send();
-  }
+  if(number !== '')
+  ajax.open("GET", 'http://numbersapi.com/'+ number + '/math', true);
+  ajax.onload = function () {
+    if (this.status === 200 && this.readyState == 4) {
+      console.log(this.responseText);
+      let data = this.responseText;
+      display.textContent = `${data}`;
+    } else {
+      this.onerror = this.onerror();
+    }
+  };
+  ajax.send();
 }
+function onerror() {
+  display.textContent = "There was an error!!!";
+}
+
+
