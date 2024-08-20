@@ -9,7 +9,7 @@ function getData() {
   let number = input.value;
   const ajax = new XMLHttpRequest();
   if (number !== '') {
-    ajax.open("GET", 'http://numbersapi.com/' + number + '/math', true);
+    ajax.open("GET", 'http://numbersapi.com/', true);
     
     // Error handling
     ajax.onerror = function() {
