@@ -1,3 +1,5 @@
+let input = document.getElementById('randomnumber');
+const display = document.getElementById('display');
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 const targetUrl = `http://numbersapi.com/${number}/math`;
 const url = proxyUrl + targetUrl;
