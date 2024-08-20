@@ -1,20 +1,30 @@
-let input = document.getElementById('randomnumber');
-const display = document.getElementById('display');
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-const targetUrl = `http://numbersapi.com/${number}/math`;
-const url = proxyUrl + targetUrl;
+let input= document.getElementById('randomnumber');
 
-fetch(url)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+const display = document.getElementById('display');
+
+
+input.addEventListener("input", function () {
+  getData();
+});
+
+function getData() {
+  let number = input.value;
+  const ajax = new XMLHttpRequest();
+  if(number !== '')
+  ajax.open("GET", 'http://numbersapi.com/'+ number + '/math', true);
+  ajax.onload = function () {
+    if (this.status === 200 && this.readyState == 4) {
+      console.log(this.responseText);
+      let data = this.responseText;
+      display.textContent = `${data}`;
+    } else {
+      this.onerror = this.onerror();
     }
-    return response.text();
-  })
-  .then(data => {
-    display.textContent = data;
-  })
-  .catch(error => {
-    display.textContent = "There was an error: " + error.message;
-    console.error('There was a problem with the fetch operation:', error);
-  });
+  };
+  ajax.send();
+}
+function onerror() {
+  display.textContent = "There was an error!!!";
+}
+
+
