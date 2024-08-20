@@ -1,2 +1,1 @@
-CORS Proxy
-You can use a CORS proxy to bypass CORS restrictions while testing. Here’s an example of how to use cors-anywhere
+The Numbers API provides interesting facts about numbers in various categories such as math, trivia, and dates. This API allows you to query facts about specific numbers and retrieve data in plain text format. Ideal for integrating numerical trivia into applications or educational tools.
